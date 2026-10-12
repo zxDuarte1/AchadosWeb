@@ -1,7 +1,77 @@
+# ==========================================
+# ACHADOSWEB - CONFIGURAÇÃO APACHE
+# ==========================================
+
 RewriteEngine On
 
-# Redireciona a URL antiga para a nova
-RewriteRule ^app/view/auth/login\.php$ /login [R=302,L]
+# 1. Impede a listagem de diretórios
+Options -Indexes
 
-# Abre o arquivo PHP usando a URL /login
-RewriteRule ^login/?$ app/view/auth/login.php [L]
+
+# ==========================================
+# 2. PROTEÇÃO DE DIRETÓRIOS INTERNOS
+# ==========================================
+
+# Bloqueia acesso a config, controller e model
+RewriteRule ^app/(config|controller|model)(/|$) - [F,END,NC]
+
+# Bloqueia acesso à pasta .git
+RewriteRule (^|/)\.git(/|$) - [F,END,NC]
+
+
+# ==========================================
+# 3. PROTEÇÃO DE ARQUIVOS SENSÍVEIS
+# ==========================================
+
+<FilesMatch "(?i)(^\.|\.env$|\.sql$|\.bak$|\.log$|\.ini$|\.conf$|\.old$|~$)">
+    Require all denied
+</FilesMatch>
+
+
+# ==========================================
+# 4. URL PRINCIPAL
+# ==========================================
+
+DirectoryIndex index.html index.php
+
+# Redireciona /index.html para /
+RewriteCond %{THE_REQUEST} \s/+index\.html(?:[?\s]) [NC]
+RewriteRule ^index\.html$ / [R=302,L]
+
+
+# ==========================================
+# 5. BLOQUEIA ACESSO DIRETO AOS PHP DAS VIEWS
+# ==========================================
+
+# Bloqueia apenas requisições externas
+# Não bloqueia reescritas internas do Apache
+RewriteCond %{THE_REQUEST} \s/+app/view/[^?\s]+\.php(?:[?\s]) [NC]
+RewriteRule ^app/view/.*\.php$ - [F,END]
+
+
+# ==========================================
+# 6. MANTÉM ARQUIVOS ESTÁTICOS FUNCIONANDO
+# ==========================================
+
+# CSS, JS, imagens e diretórios existentes
+RewriteCond %{REQUEST_FILENAME} -f [OR]
+RewriteCond %{REQUEST_FILENAME} -d
+RewriteRule ^ - [END]
+
+
+# ==========================================
+# 7. ROTAS AMIGÁVEIS AUTOMÁTICAS
+# ==========================================
+
+# Exemplo: /login -> app/view/auth/login.php
+RewriteCond %{DOCUMENT_ROOT}/app/view/auth/$1.php -f
+RewriteRule ^([a-zA-Z0-9_-]+)/?$ app/view/auth/$1.php [END]
+
+# Exemplo: /dashboard -> app/view/dashboard.php
+RewriteCond %{DOCUMENT_ROOT}/app/view/$1.php -f
+RewriteRule ^([a-zA-Z0-9_-]+)/?$ app/view/$1.php [END]
+
+
+# ==========================================
+# FIM DA CONFIGURAÇÃO
+# ==========================================
