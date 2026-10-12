@@ -1,0 +1,7 @@
+RewriteEngine On
+
+# Redireciona a URL antiga para a nova
+RewriteRule ^app/view/auth/login\.php$ /login [R=302,L]
+
+# Abre o arquivo PHP usando a URL /login
+RewriteRule ^login/?$ app/view/auth/login.php [L]
