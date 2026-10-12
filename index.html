@@ -1,11 +1,58 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>Achados Web - Home</title>
+    <link rel="stylesheet" href="app/view/assets/css/home.css">
+    <link rel="stylesheet" href="app/view/assets/css/loading.css">
+
+
 </head>
+
 <body>
-    <h1>OLA SITE NOVO</h1>
+
+    <div id="loading-screen" class="active">
+        <div class="spinner"></div>
+        <p>Carregando...</p>
+    </div>
+
+    <div id="Title">
+        <h1>Achados Web</h1>
+    </div>
+
+    <div id="SubTitle">
+        <h2>Perdeu alguma coisa?</h2>
+        <p>Cadastre ou encontre itens perdidos no campus de forma rápida e simples.</p>
+    </div>
+
+    <div id="Button">
+        <button href="pages/auth/login.php">Vamos Achar</button>
+    </div>
+
+    <section id="HowItWorks">
+        <div class="step">
+            <span class="step-number">01</span>
+            <h3>Cadastre</h3>
+            <p>Registre o item perdido ou encontrado com uma foto e descrição.</p>
+        </div>
+        <div class="step">
+            <span class="step-number">02</span>
+            <h3>Busque</h3>
+            <p>Procure na lista de itens cadastrados por outros usuários.</p>
+        </div>
+        <div class="step">
+            <span class="step-number">03</span>
+            <h3>Encontre</h3>
+            <p>Entre em contato e recupere o que é seu.</p>
+        </div>
+    </section>
+
+
+    <script src="app/view/assets/js/home.js"></script>
+    <script src="app/view/assets/js/loading.js"></script>
+
 </body>
+
 </html>

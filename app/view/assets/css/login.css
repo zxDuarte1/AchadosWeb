@@ -1,0 +1,14 @@
+@import url('https://fonts.googleapis.com/css2?family=Archivo+Black&family=Caacupe+One&display=swap');
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    background-color: #1b263b;
+    font-family: "Caacupe One", sans-serif;
+    color: #e0e1dd;
+    min-height: 100vh;
+}
