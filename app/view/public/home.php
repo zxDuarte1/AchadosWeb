@@ -28,7 +28,9 @@
     </div>
 
     <div id="Button">
-        <button href="pages/auth/login.php">Vamos Achar</button>
+        <a href="index.php?action=login">
+            <button type="button">Vamos Achar</button>
+        </a>
     </div>
 
     <section id="HowItWorks">
