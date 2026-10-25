@@ -33,7 +33,6 @@ class Usuario
         $stmt = $this->conn->prepare($sql);
 
         $stmt->bind_param("sss", $nome, $email, $senha);
-        $stmt->execute();
 
         $resultado = $stmt->execute();
 
