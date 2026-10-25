@@ -7,16 +7,18 @@ $action = $_GET['action'] ?? 'index';
 switch ($action) {
 
     case 'login':
-        $controller->login();
+        $controller->loginLocation();
         break;
     case 'autenticar':
         $controller->autenticar();
         break;
+    case 'criarUsuario':
+        $controller->criarUsuario();
     case 'register':
-        $controller->register();
+        $controller->registerLocation();
         break;
     case 'dashboard':
-        $controller->dashboard();
+        $controller->dashboardLocation();
         break;
     case 'logout':
         $controller->logout();

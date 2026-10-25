@@ -17,7 +17,10 @@
     <div class="painel_login">
         <h2>Registrar-se</h2>
 
-        <form action="index.php?action=autenticar" method="POST">
+        <form action="index.php?action=criarUsuario" method="POST">
+            <label for="nome_id">Nome</label>
+            <input type="text" name="nome" id="nome_id" required>
+
             <label for="email_id">Email</label>
             <input type="email" name="email" id="email_id" required>
 
